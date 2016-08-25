@@ -20,12 +20,15 @@ public class Menu {
          System.out.println("O que vocÊ deseja fazer?");
          
          Scanner entrada = new Scanner( System.in );
+         int opcao = 0;
+         do{
          try {
-            int opcao = entrada.nextInt();
+            opcao = Integer.parseInt(entrada.nextLine());
             System.out.println("O usuario digitou "+opcao);
         } catch (Exception e) {
-            System.out.println("Nao deu certo pq: "+e.getMessage());
+            System.out.println("Nao deu certo informe novamente");
         }
+         }while(opcao)
          
     }
  

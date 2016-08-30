@@ -5,6 +5,7 @@
  */
 package visao;
 
+import armazenamento.MeioArmazenamento;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Scanner;
 public class Menu {
     public static void exibirMenu(){
          System.out.println("==== MENU PRINCIPAL ====");
+         System.out.println("Numero de equipamentos: "+MeioArmazenamento.MEIO_ARMAZENAMENTO_EQUIPAMENTOS.size());
          System.out.println("Seleciona a opção:");
          System.out.println("1) Cadastro de equipamento");
          System.out.println("2) Listagem de equipamentos");
@@ -28,9 +30,9 @@ public class Menu {
         } catch (Exception e) {
             System.out.println("Nao deu certo informe novamente");
         }
-         }while(opcao)
          
-    }
+    }while(opcao !=1 && opcao !=2);
+     if(opcao)
  
     
 }

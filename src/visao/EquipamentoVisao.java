@@ -5,9 +5,12 @@
  */
 package visao;
 
+import controle.EquipamentoControle;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import modelo.Equipamento;
 
 /**
  *
@@ -51,14 +54,41 @@ public class EquipamentoVisao {
             }
         }while(true);
         System.out.println("Informe o valor: ");
-        do{
-            try{
-                valor = Float.parseFloat(entrada.nextLine());
-                break;
-            }catch(Exception e){
-                System.out.println("Valor inválido!!! Digite novamente!");
-            }
-        }while(true);
         
+
+         EquipamentoControle.receberDadosCadastroEquipamento(nome, patrimonio, dataAquisicao, dataTerminoGarantia, valor);
+         Menu.exibirMenu();        
+    }
+    
+    public static void exibirListagemEquipamentos(){
+        System.out.println("=== TELA DE LISTAGEM DE EQUIPAMENTOS ===");
+        
+        System.out.println("NOME \t Data Aquisição\t numero de manutencoes");
+//        ArrayList<Equipamento> lista = EquipamentoControle.obterListaEquipamentos();
+//        for(int i=0; i < EquipamentoControle.obterListaEquipamentos().size(); i++){
+//                System.out.println(lista.get(i).getNome()+"\t"+lista.get(i).getDataAquisicao());
+//        }
+        for(Equipamento obj : EquipamentoControle.obterListaEquipamentos()){
+                System.out.println(obj.getNome()+"\t"+obj.getDataAquisicao()+"\t"+obj.getListaManutencoes().size());
+        }
+        
+        System.out.println("O que deseja fazer?");
+        System.out.println("0) voltar ao menu");
+        System.out.println("numero patrimônio) Cadastrar manutenção para o equipamento");
+        
+        Scanner entrada = new Scanner(System.in);
+        String valorDigitado = entrada.nextLine();
+        
+        if(entrada.equals("0")){
+            Menu.exibirMenu();
+        }else{
+            Equipamento encontrado = EquipamentoControle.obterEquipamentoPeloNumeroDoPatrimonio(valorDigitado);
+            if(encontrado == null){
+                System.out.println("ERRO: nÃO encontrei");
+                Menu.exibirMenu();
+            }else{
+                
+            }
+        }
     }
 }
